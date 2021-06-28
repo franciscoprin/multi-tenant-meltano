@@ -9,6 +9,7 @@ If you haven't don't already check the REQUIREMENTS section.
 After that, run these commands:
 
 - (terminal #1): docker-compose up
+- (Note): waiting until all the containers are lift.
 - (terminal #2): cd meltano-pipeline
 - (terminal #2): ./meltano.sh invoke tap-postgres --discover
 

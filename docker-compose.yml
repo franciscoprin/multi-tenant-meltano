@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5533:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  web:
+    build:
+      context: ./transport-service
+      dockerfile: Dockerfile # optionanl.
+      args:
+        ENV: dev
+    command: >
+      bash -c "pip install -r ./requirements.txt &&
+      ./wait-for-postgres.sh -- python manage.py migrate &&
+      python manage.py populate_db &&
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./transport-service:/code
+    ports:
+      - "8023:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      - db
+
+  meltano-pipeline:
+    image: meltano/meltano
+    entrypoint: sleep infinity
+    volumes:
+      - ./meltano-pipeline:/code
+    env_file:
+      - ./meltano-pipeline/.env.example

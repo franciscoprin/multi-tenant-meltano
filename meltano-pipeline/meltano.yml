@@ -1,0 +1,11 @@
+version: 1
+send_anonymous_usage_stats: false
+plugins:
+  extractors:
+  - name: tap-postgres
+    variant: transferwise
+    pip_url: pipelinewise-tap-postgres
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl

@@ -5,7 +5,7 @@
 
 ## GETTING STARTED:
 
-If you haven't don't already check the REQUIREMENTS section.
+If you haven't don't already, check the REQUIREMENTS section.
 After that, run these commands:
 
 - (terminal #1): docker-compose up

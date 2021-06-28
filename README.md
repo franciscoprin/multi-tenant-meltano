@@ -8,9 +8,9 @@
 If you haven't don't already check the REQUIREMENTS section.
 After that, run these commands:
 
-- (terminal 1): docker-compose up
-- (terminal 2): cd meltano-pipeline
-- (terminal 2): ./meltano.sh
+- (terminal #1): docker-compose up
+- (terminal #2): cd meltano-pipeline
+- (terminal #2): ./meltano.sh invoke tap-postgres --discover
 
 ## REFERENCE:
 
@@ -31,4 +31,4 @@ After that, run these commands:
 - meltano postgres extractor: https://hub.meltano.com/extractors/postgres
 - meltano json loader: https://hub.meltano.com/loaders/jsonl
 - meltano configure tap-postgres' creds: https://meltano.com/docs/getting-started.html#configure-the-extractor
--
+- fork tap-postgres: https://github.com/franciscoprin/pipelinewise-tap-postgres

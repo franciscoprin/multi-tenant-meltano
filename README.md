@@ -3,15 +3,26 @@
 - Docker Engine: https://docs.docker.com/engine/install/
 - Docker Compose: https://docs.docker.com/compose/install/
 
+## tap-postgres's pip_url:
+
+| type              | tap/target   | pip_url                                                        |
+| ----------------- | ------------ | -------------------------------------------------------------- |
+| local-environment | tap-postgres | -e /pipelinewise-tap-postgres                                  |
+| original-code     | tap-postgres | pipelinewise-tap-postgres                                      |
+| modified-code     | tap-postgres | git+https://github.com/franciscoprin/pipelinewise-tap-postgres |
+
 ## GETTING STARTED:
 
 If you haven't don't already, check the REQUIREMENTS section.
 After that, run these commands:
 
+- modified the pip_url of the tap-postgres in the meltano-pipeline/meltano.yml, following the available options in the `tap-postgres's pip_url` section.
 - (terminal #1): docker-compose up
 - (Note): waiting until all the containers are lift.
+- (terminal #2, repeated this command if the meltano.yml is manually changed): ./meltano.sh install
 - (terminal #2): cd meltano-pipeline
-- (terminal #2): ./meltano.sh invoke tap-postgres --discover
+- (terminal #2, log schemas): ./meltano.sh invoke tap-postgres --discover
+- (terminal #2, check selected/excluded fields): ./meltano.sh select tap-postgres --list --all
 
 ## REFERENCE:
 
@@ -33,3 +44,4 @@ After that, run these commands:
 - meltano json loader: https://hub.meltano.com/loaders/jsonl
 - meltano configure tap-postgres' creds: https://meltano.com/docs/getting-started.html#configure-the-extractor
 - fork tap-postgres: https://github.com/franciscoprin/pipelinewise-tap-postgres
+- creating tables in github README.md: https://docs.github.com/es/github/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables

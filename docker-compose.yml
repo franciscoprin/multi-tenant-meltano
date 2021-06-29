@@ -41,5 +41,6 @@ services:
     entrypoint: sleep infinity
     volumes:
       - ./meltano-pipeline:/code
+      - ./pipelinewise-tap-postgres:/pipelinewise-tap-postgres
     env_file:
       - ./meltano-pipeline/.env.example

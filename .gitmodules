@@ -1,0 +1,3 @@
+[submodule "pipelinewise-tap-postgres"]
+	path = pipelinewise-tap-postgres
+	url = https://github.com/franciscoprin/pipelinewise-tap-postgres.git

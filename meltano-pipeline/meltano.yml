@@ -2,10 +2,13 @@ version: 1
 send_anonymous_usage_stats: false
 plugins:
   extractors:
-  - name: tap-postgres
-    variant: transferwise
-    pip_url: pipelinewise-tap-postgres
+    - name: tap-postgres
+      pip_url: git+https://github.com/franciscoprin/pipelinewise-tap-postgres
+      select:
+        - "*.*"
+        - "!*auth_*"
+        - "!*django_*"
   loaders:
-  - name: target-jsonl
-    variant: andyh1203
-    pip_url: target-jsonl
+    - name: target-jsonl
+      variant: andyh1203
+      pip_url: target-jsonl

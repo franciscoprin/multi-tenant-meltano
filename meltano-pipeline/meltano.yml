@@ -3,9 +3,16 @@ send_anonymous_usage_stats: false
 plugins:
   extractors:
     - name: tap-postgres
+      variant: transferwise
       pip_url: git+https://github.com/franciscoprin/pipelinewise-tap-postgres
+      metadata:
+        "*-shipments_shipment":
+          replication-method: INCREMENTAL
+          replication-key: created_on
+          created_on:
+            is-replication-key: true
       select:
-        - "*.*"
+        - "*-shipments_shipment"
         - "!*auth_*"
         - "!*django_*"
   loaders:
